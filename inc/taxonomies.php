@@ -117,7 +117,7 @@ add_filter( 'cptui_get_tabs', 'cptui_taxonomy_tabs', 10, 2 );
 function cptui_manage_taxonomies() {
 
 	$taxonomy_deleted = false;
-
+	
 	if ( ! empty( $_POST ) ) {
 		if ( isset( $_POST['cpt_submit'] ) ) {
 			check_admin_referer( 'cptui_addedit_taxonomy_nonce_action', 'cptui_addedit_taxonomy_nonce_field' );
@@ -1318,3 +1318,23 @@ function cptui_check_existing_taxonomy_slugs( $slug_exists = false, $taxonomy_sl
 	return $slug_exists;
 }
 add_filter( 'cptui_taxonomy_slug_exists', 'cptui_check_existing_taxonomy_slugs', 10, 3 );
+
+function cptui_process_taxonomy() {
+
+	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+		return;
+	}
+
+	if ( ! empty( $_POST ) ) {
+		if ( isset( $_POST['cpt_submit'] ) ) {
+			check_admin_referer( 'cptui_addedit_taxonomy_nonce_action', 'cptui_addedit_taxonomy_nonce_field' );
+			$notice = cptui_update_taxonomy( $_POST );
+		} elseif ( isset( $_POST['cpt_delete'] ) ) {
+			check_admin_referer( 'cptui_addedit_taxonomy_nonce_action', 'cptui_addedit_taxonomy_nonce_field' );
+			$notice           = cptui_delete_taxonomy( $_POST );
+			$taxonomy_deleted = true;
+		}
+	}
+
+}
+add_action( 'admin_init', 'cptui_process_taxonomy' );
