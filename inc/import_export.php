@@ -266,7 +266,7 @@ function cptui_get_post_type_code( $cptui_post_types = array(), $single = false 
 	?>
 add_action( 'init', '<?php echo $callback; ?>' );
 function <?php echo $callback; ?>() {
-<?php // space before this line reflects in textarea.
+<?php // Space before this line reflects in textarea.
 	foreach ( $cptui_post_types as $type ) {
 	echo cptui_get_single_post_type_registery( $type ) . "\n";
 	} ?>
