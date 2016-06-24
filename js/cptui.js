@@ -40,6 +40,7 @@
 		value = value.replace(/ /g, "_");
 		value = value.toLowerCase();
 		value = replaceDiacritics(value);
+		value = replaceSpecialCharacters(value);
 		$(this).attr('value',value);
 	});
 
@@ -64,8 +65,17 @@
 		return s;
 	}
 
-	var _custom_media = true,
-		_orig_send_attachment = wp.media.editor.send.attachment;
+	function replaceSpecialCharacters(s) {
+
+		s = s.replace(/[^a-z0-9\s]/gi, '_');
+
+		return s;
+	}
+
+	if ( undefined != wp.media ) {
+		var _custom_media = true,
+			_orig_send_attachment = wp.media.editor.send.attachment;
+	}
 
 	$('#cptui_choose_icon').on('click',function(e){
 		e.preventDefault();
