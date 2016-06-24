@@ -1125,8 +1125,6 @@ function cptui_manage_post_types() {
  * @since 1.0.0
  *
  * @param array $post_types Array of post types that are registered.
- *
- * @return string HTML select dropdown.
  */
 function cptui_post_types_dropdown( $post_types = array() ) {
 
