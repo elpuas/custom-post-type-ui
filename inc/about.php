@@ -132,7 +132,9 @@ add_action( 'cptui_main_page_before_changelog', 'cptui_about_page_newsletter' );
 
 /**
  * Outputs our newsletter signup form.
- * @since 1.3.4
+ *
+ * @since 1.4.0
+ *
  * @internal
  */
 function cptui_about_page_newsletter_form() {
