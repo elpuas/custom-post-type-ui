@@ -841,7 +841,6 @@ function cptui_manage_taxonomies() {
  * @since 1.0.0
  *
  * @param array $taxonomies Array of taxonomies that are registered.
- * @return string HTML select dropdown.
  */
 function cptui_taxonomies_dropdown( $taxonomies = array() ) {
 
@@ -922,7 +921,7 @@ function cptui_get_current_taxonomy( $taxonomy_deleted = false ) {
  *
  * @internal
  *
- * @param $data array $_POST values.
+ * @param array $data The $_POST values.
  * @return bool|string False on failure, string on success.
  */
 function cptui_delete_taxonomy( $data = array() ) {
