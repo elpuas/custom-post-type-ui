@@ -1206,7 +1206,7 @@ function cptui_get_current_post_type( $post_type_deleted = false ) {
  *
  * @internal
  *
- * @param $data array $_POST values.
+ * @param array $data $_POST values.
  *
  * @return bool|string False on failure, string on success.
  */
@@ -1305,7 +1305,7 @@ function cptui_update_post_type( $data = array() ) {
 		}
 	}
 
-	// clean up $_POST data.
+	// Clean up $_POST data.
 	foreach ( $data as $key => $value ) {
 		if ( is_string( $value ) ) {
 			$data[ $key ] = sanitize_text_field( $value );
