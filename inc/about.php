@@ -124,3 +124,8 @@ function cptui_pluginize_content() {
 	echo '</div>';
 }
 add_action( 'cptui_main_page_extra_notes', 'cptui_pluginize_content', 9 );
+
+function cptui_about_page_newsletter() {
+	cptui_newsletter_form();
+}
+add_action( 'cptui_main_page_before_changelog', 'cptui_about_page_newsletter' );
