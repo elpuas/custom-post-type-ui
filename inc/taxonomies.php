@@ -1336,4 +1336,4 @@ function cptui_process_taxonomy() {
 		}
 	}
 }
-add_action( 'admin_init', 'cptui_process_taxonomy' );
+add_action( 'init', 'cptui_process_taxonomy', 8 );
