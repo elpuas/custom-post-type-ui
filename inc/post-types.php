@@ -1566,6 +1566,11 @@ function cptui_check_page_slugs( $post_type_slug = '' ) {
 	return false;
 }
 
+/**
+ * Handle the save and deletion of taxonomy data.
+ *
+ * @since 1.4.0
+ */
 function cptui_process_post_type() {
 
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
