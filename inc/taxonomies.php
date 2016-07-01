@@ -116,19 +116,6 @@ add_filter( 'cptui_get_tabs', 'cptui_taxonomy_tabs', 10, 2 );
  */
 function cptui_manage_taxonomies() {
 
-	$taxonomy_deleted = false;
-	
-	if ( ! empty( $_POST ) ) {
-		if ( isset( $_POST['cpt_submit'] ) ) {
-			check_admin_referer( 'cptui_addedit_taxonomy_nonce_action', 'cptui_addedit_taxonomy_nonce_field' );
-			$notice = cptui_update_taxonomy( $_POST );
-		} elseif ( isset( $_POST['cpt_delete'] ) ) {
-			check_admin_referer( 'cptui_addedit_taxonomy_nonce_action', 'cptui_addedit_taxonomy_nonce_field' );
-			$notice = cptui_delete_taxonomy( $_POST );
-			$taxonomy_deleted = true;
-		}
-	}
-
 	$tab = ( ! empty( $_GET ) && ! empty( $_GET['action'] ) && 'edit' == $_GET['action'] ) ? 'edit' : 'new';
 	$tab_class = 'cptui-' . $tab; ?>
 
