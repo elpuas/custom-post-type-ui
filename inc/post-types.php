@@ -116,8 +116,6 @@ add_filter( 'cptui_get_tabs', 'cptui_post_type_tabs', 10, 2 );
  */
 function cptui_manage_post_types() {
 
-	$post_type_deleted = false;
-
 	$tab = ( ! empty( $_GET ) && ! empty( $_GET['action'] ) && 'edit' === $_GET['action'] ) ? 'edit' : 'new';
 	$tab_class = 'cptui-' . $tab; ?>
 
