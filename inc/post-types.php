@@ -1595,6 +1595,5 @@ function cptui_process_post_type() {
 			$post_type_deleted = true;
 		}
 	}
-
 }
-add_action( 'admin_init', 'cptui_process_post_type' );
+add_action( 'init', 'cptui_process_post_type', 8 );
