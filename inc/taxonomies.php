@@ -1319,6 +1319,11 @@ function cptui_check_existing_taxonomy_slugs( $slug_exists = false, $taxonomy_sl
 }
 add_filter( 'cptui_taxonomy_slug_exists', 'cptui_check_existing_taxonomy_slugs', 10, 3 );
 
+/**
+ * Handle the save and deletion of taxonomy data.
+ *
+ * @since 1.4.0
+ */
 function cptui_process_taxonomy() {
 
 	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
