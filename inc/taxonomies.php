@@ -1325,6 +1325,10 @@ function cptui_process_taxonomy() {
 		return;
 	}
 
+	if ( ! empty( $_GET ) && 'cptui_manage_taxonomies' !== $_GET['page'] ) {
+		return;
+	}
+
 	if ( ! empty( $_POST ) ) {
 		if ( isset( $_POST['cpt_submit'] ) ) {
 			check_admin_referer( 'cptui_addedit_taxonomy_nonce_action', 'cptui_addedit_taxonomy_nonce_field' );
