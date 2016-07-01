@@ -1572,6 +1572,14 @@ function cptui_process_post_type() {
 		return;
 	}
 
+	if ( ! is_admin() ) {
+		return;
+	}
+
+	if ( ! empty( $_GET ) && 'cptui_manage_post_types' !== $_GET['page'] ) {
+		return;
+	}
+
 	if ( ! empty( $_POST ) ) {
 		if ( isset( $_POST['cpt_submit'] ) ) {
 			check_admin_referer( 'cptui_addedit_post_type_nonce_action', 'cptui_addedit_post_type_nonce_field' );
