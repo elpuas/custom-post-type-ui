@@ -1321,7 +1321,7 @@ function cptui_process_taxonomy() {
 		return;
 	}
 
-	if ( ! empty( $_GET ) && 'cptui_manage_taxonomies' !== $_GET['page'] ) {
+	if ( ! empty( $_GET ) && isset( $_GET['page'] ) && 'cptui_manage_taxonomies' !== $_GET['page'] ) {
 		return;
 	}
 

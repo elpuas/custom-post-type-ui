@@ -1581,7 +1581,7 @@ function cptui_process_post_type() {
 		return;
 	}
 
-	if ( ! empty( $_GET ) && 'cptui_manage_post_types' !== $_GET['page'] ) {
+	if ( ! empty( $_GET ) && isset( $_GET['page'] ) && 'cptui_manage_post_types' !== $_GET['page'] ) {
 		return;
 	}
 
