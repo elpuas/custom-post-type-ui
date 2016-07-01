@@ -1317,6 +1317,10 @@ function cptui_process_taxonomy() {
 		return;
 	}
 
+	if ( ! is_admin() ) {
+		return;
+	}
+
 	if ( ! empty( $_GET ) && 'cptui_manage_taxonomies' !== $_GET['page'] ) {
 		return;
 	}
@@ -1331,6 +1335,5 @@ function cptui_process_taxonomy() {
 			$taxonomy_deleted = true;
 		}
 	}
-
 }
 add_action( 'admin_init', 'cptui_process_taxonomy' );
