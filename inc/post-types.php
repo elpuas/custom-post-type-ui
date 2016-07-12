@@ -328,7 +328,7 @@ function cptui_manage_post_types() {
 					</div>
 				</div>
 			</div>
-			<div class="cptui-section postbox closed">
+			<div class="cptui-section postbox">
 				<button type="button" class="handlediv button-link" aria-expanded="true">
 					<span class="screen-reader-text"><?php esc_html_e( 'Toggle panel: Additional labels', 'custom-post-type-ui' ); ?></span>
 					<span class="toggle-indicator" aria-hidden="true"></span>
