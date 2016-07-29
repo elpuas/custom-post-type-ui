@@ -200,6 +200,7 @@ function cptui_manage_post_types() {
 	} ?>
 
 	<form class="posttypesui meta-box-sortables" method="post" action="<?php echo esc_url( cptui_get_post_form_action( $ui ) ); ?>">
+		<div class="postbox-container">
 		<div id="poststuff">
 			<div class="cptui-section postbox">
 				<button type="button" class="handlediv button-link" aria-expanded="true">
@@ -1109,6 +1110,7 @@ function cptui_manage_post_types() {
 					<input type="submit" class="button-primary" name="cpt_submit" value="<?php echo esc_attr( apply_filters( 'cptui_post_type_submit_add', __( 'Add Post Type', 'custom-post-type-ui' ) ) ); ?>" />
 			<?php } ?>
 			</p>
+		</div>
 		</div>
 	</form>
 	</div><!-- End .wrap -->
