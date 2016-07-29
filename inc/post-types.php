@@ -199,7 +199,7 @@ function cptui_manage_post_types() {
 		do_action( 'cptui_below_post_type_select', $current['name'] );
 	} ?>
 
-	<form class="posttypesui meta-box-sortables" method="post" action="<?php echo esc_url( cptui_get_post_form_action( $ui ) ); ?>">
+	<form class="posttypesui" method="post" action="<?php echo esc_url( cptui_get_post_form_action( $ui ) ); ?>">
 		<div class="postbox-container">
 		<div id="poststuff">
 			<div class="cptui-section postbox">
@@ -1070,7 +1070,7 @@ function cptui_manage_post_types() {
 				 *
 				 * @param cptui_admin_ui $ui Admin UI instance.
 				 */
-				#do_action( 'cptui_post_type_after_fieldsets', $ui ); ?>
+				do_action( 'cptui_post_type_after_fieldsets', $ui ); ?>
 				</div>
 			</div>
 			<p>
