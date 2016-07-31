@@ -36,6 +36,7 @@ function cptui_taxonomies_enqueue_scripts() {
 	wp_localize_script(	'cptui', 'cptui_tax_data',
 		array(
 			'confirm' => esc_html__( 'Are you sure you want to delete this? Deleting will NOT remove created content.', 'custom-post-type-ui' ),
+			'no_associated_type' => esc_html( 'Please select a post type to associate with.', 'custom-post-type-ui' )
 		)
 	);
 }
@@ -238,6 +239,26 @@ function cptui_manage_taxonomies() {
 						echo '</div>';
 					}
 
+					echo $ui->get_text_input( array(
+						'namearray' => 'cpt_custom_tax',
+						'name'      => 'label',
+						'textvalue' => ( isset( $current['label'] ) ) ? esc_attr( $current['label'] ) : '',
+						'aftertext' => esc_html__( '(e.g. Actors)', 'custom-post-type-ui' ),
+						'labeltext' => esc_html__( 'Plural Label', 'custom-post-type-ui' ),
+						'helptext'  => esc_attr__( 'Used for the taxonomy admin menu item.', 'custom-post-type-ui' ),
+						'required'  => true,
+					) );
+
+					echo $ui->get_text_input( array(
+						'namearray' => 'cpt_custom_tax',
+						'name'      => 'singular_label',
+						'textvalue' => ( isset( $current['singular_label'] ) ) ? esc_attr( $current['singular_label'] ) : '',
+						'aftertext' => esc_html__( '(e.g. Actor)', 'custom-post-type-ui' ),
+						'labeltext' => esc_html__( 'Singular Label', 'custom-post-type-ui' ),
+						'helptext'  => esc_attr__( 'Used when a singular label is needed.', 'custom-post-type-ui' ),
+						'required'  => true,
+					) );
+
 					echo $ui->get_td_end() . $ui->get_tr_end();
 
 					echo $ui->get_tr_start() . $ui->get_th_start() . esc_html__( 'Attach to Post Type', 'custom-post-type-ui' ) . $ui->get_required_span();
@@ -288,26 +309,6 @@ function cptui_manage_taxonomies() {
 					}
 
 					echo $ui->get_fieldset_end() . $ui->get_td_end() . $ui->get_tr_end();
-
-					echo $ui->get_text_input( array(
-						'namearray' => 'cpt_custom_tax',
-						'name'      => 'label',
-						'textvalue' => ( isset( $current['label'] ) ) ? esc_attr( $current['label'] ) : '',
-						'aftertext' => esc_html__( '(e.g. Actors)', 'custom-post-type-ui' ),
-						'labeltext' => esc_html__( 'Plural Label', 'custom-post-type-ui' ),
-						'helptext'  => esc_attr__( 'Used for the taxonomy admin menu item.', 'custom-post-type-ui' ),
-						'required'  => true,
-					) );
-
-					echo $ui->get_text_input( array(
-						'namearray' => 'cpt_custom_tax',
-						'name'      => 'singular_label',
-						'textvalue' => ( isset( $current['singular_label'] ) ) ? esc_attr( $current['singular_label'] ) : '',
-						'aftertext' => esc_html__( '(e.g. Actor)', 'custom-post-type-ui' ),
-						'labeltext' => esc_html__( 'Singular Label', 'custom-post-type-ui' ),
-						'helptext'  => esc_attr__( 'Used when a singular label is needed.', 'custom-post-type-ui' ),
-						'required'  => true,
-					) );
 			?>
 			</table>
 			<p class="submit">
@@ -346,7 +347,7 @@ function cptui_manage_taxonomies() {
 					 * @param string $value Text to use for the button.
 					 */
 					?>
-					<input type="submit" class="button-primary" name="cpt_submit" value="<?php echo esc_attr( apply_filters( 'cptui_taxonomy_submit_add', esc_attr__( 'Add Taxonomy', 'custom-post-type-ui' ) ) ); ?>" />
+					<input type="submit" class="button-primary cptui-taxonomy-submit" name="cpt_submit" value="<?php echo esc_attr( apply_filters( 'cptui_taxonomy_submit_add', esc_attr__( 'Add Taxonomy', 'custom-post-type-ui' ) ) ); ?>" />
 				<?php } ?>
 
 				<?php if ( ! empty( $current ) ) { ?>
@@ -780,7 +781,7 @@ function cptui_manage_taxonomies() {
 				 * @param string $value Text to use for the button.
 				 */
 				?>
-				<input type="submit" class="button-primary" name="cpt_submit" value="<?php echo esc_attr( apply_filters( 'cptui_taxonomy_submit_edit', esc_attr__( 'Save Taxonomy', 'custom-post-type-ui' ) ) ); ?>" />
+				<input type="submit" class="button-primary cptui-taxonomy-submit" name="cpt_submit" value="<?php echo esc_attr( apply_filters( 'cptui_taxonomy_submit_edit', esc_attr__( 'Save Taxonomy', 'custom-post-type-ui' ) ) ); ?>" />
 				<?php
 
 				/**
@@ -867,14 +868,10 @@ function cptui_get_current_taxonomy( $taxonomy_deleted = false ) {
 	if ( ! empty( $_POST ) ) {
 		if ( isset( $_POST['cptui_selected_taxonomy']['taxonomy'] ) ) {
 			$tax = sanitize_text_field( $_POST['cptui_selected_taxonomy']['taxonomy'] );
-		}
-
-		if ( $taxonomy_deleted ) {
+		} else if ( $taxonomy_deleted ) {
 			$taxonomies = cptui_get_taxonomy_data();
 			$tax = key( $taxonomies );
-		}
-
-		if ( isset( $_POST['cpt_custom_tax']['name'] ) ) {
+		} else if ( isset( $_POST['cpt_custom_tax']['name'] ) ) {
 			$tax = sanitize_text_field( $_POST['cpt_custom_tax']['name'] );
 		}
 	} else if ( ! empty( $_GET ) && isset( $_GET['cptui_taxonomy'] ) ) {

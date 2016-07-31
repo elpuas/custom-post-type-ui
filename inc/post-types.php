@@ -564,7 +564,7 @@ function cptui_manage_post_types() {
 						array( 'attr' => '1', 'text' => esc_attr__( 'True', 'custom-post-type-ui' ), 'default' => 'true' ),
 					),
 				);
-				$selected = ( isset( $current ) ) ? disp_boolean( $current['publicly_queryable'] ) : '';
+				$selected = ( isset( $current ) && ! empty( $current['publicly_queryable'] ) ) ? disp_boolean( $current['publicly_queryable'] ) : '';
 				$select['selected'] = ( ! empty( $selected ) ) ? $current['publicly_queryable'] : '';
 				echo $ui->get_select_input( array(
 					'namearray'  => 'cpt_custom_post_type',
@@ -771,7 +771,18 @@ function cptui_manage_post_types() {
 
 				echo $ui->get_tr_start() . $ui->get_th_start();
 				echo $ui->get_label( 'menu_position', esc_html__( 'Menu Position', 'custom-post-type-ui' ) );
-				echo $ui->get_p( esc_html__( 'See <a href="http://codex.wordpress.org/Function_Reference/register_post_type#Parameters" target="_blank">Available options</a> in the "menu_position" section. Range of 5-100', 'custom-post-type-ui' ) );
+				echo $ui->get_p(
+					sprintf(
+						esc_html__(
+							'See %s in the "menu_position" section. Range of 5-100',
+							'custom-post-type-ui'
+						),
+						sprintf(
+							'<a href="http://codex.wordpress.org/Function_Reference/register_post_type#Parameters" target="_blank">%s</a>',
+							esc_html__( 'Available options', 'custom-post-type-ui' )
+						)
+					)
+				);
 
 				echo $ui->get_th_end() . $ui->get_td_start();
 				echo $ui->get_text_input( array(
@@ -1145,14 +1156,10 @@ function cptui_get_current_post_type( $post_type_deleted = false ) {
 	if ( ! empty( $_POST ) ) {
 		if ( isset( $_POST['cptui_selected_post_type']['post_type'] ) ) {
 			$type = sanitize_text_field( $_POST['cptui_selected_post_type']['post_type'] );
-		}
-
-		if ( $post_type_deleted ) {
+		} else if ( $post_type_deleted ) {
 			$post_types = cptui_get_post_type_data();
 			$type = key( $post_types );
-		}
-
-		if ( isset( $_POST['cpt_custom_post_type']['name'] ) ) {
+		} else if ( isset( $_POST['cpt_custom_post_type']['name'] ) ) {
 			$type = sanitize_text_field( $_POST['cpt_custom_post_type']['name'] );
 		}
 	} else if ( ! empty( $_GET ) && isset( $_GET['cptui_post_type'] ) ) {
