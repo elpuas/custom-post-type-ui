@@ -1020,7 +1020,8 @@ function cptui_update_taxonomy( $data = array() ) {
 		false !== strpos( $data['cpt_custom_tax']['rewrite_slug'], '\'' ) ||
 		false !== strpos( $data['cpt_custom_tax']['rewrite_slug'], '\"' ) ) {
 
-		return cptui_admin_notices( 'error', '', false, esc_html__( 'Please do not use quotes in taxonomy names or rewrite slugs', 'custom-post-type-ui' ) );
+		add_filter( 'cptui_custom_error_message', 'cptui_slug_has_quotes' );
+		return 'error';
 	}
 
 	$taxonomies = cptui_get_taxonomy_data();
@@ -1037,7 +1038,8 @@ function cptui_update_taxonomy( $data = array() ) {
 	$slug_exists = apply_filters( 'cptui_taxonomy_slug_exists', false, $data['cpt_custom_tax']['name'], $taxonomies );
 	if ( 'new' == $data['cpt_tax_status'] ) {
 		if ( true === $slug_exists ) {
-			return cptui_admin_notices( 'error', '', false, sprintf( esc_html__( 'Please choose a different taxonomy name. %s is already registered.', 'custom-post-type-ui' ), $data['cpt_custom_tax']['name'] ) );
+			add_filter( 'cptui_custom_error_message', 'cptui_slug_matches_taxonomy' );
+			return 'error';
 		}
 	}
 
