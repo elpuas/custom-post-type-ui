@@ -961,9 +961,9 @@ function cptui_delete_taxonomy( $data = array() ) {
 	set_transient( 'cptui_flush_rewrite_rules', 'true', 5 * 60 );
 
 	if ( isset( $success ) ) {
-		return cptui_admin_notices( 'delete', $data['cpt_custom_tax']['name'], $success );
+		return 'delete_success';
 	}
-	return false;
+	return 'delete_fail';
 }
 
 /**
@@ -1115,11 +1115,11 @@ function cptui_update_taxonomy( $data = array() ) {
 
 	if ( isset( $success ) ) {
 		if ( 'new' == $data['cpt_tax_status'] ) {
-			return cptui_admin_notices( 'add', $data['cpt_custom_tax']['name'], $success );
+			return 'add_success';
 		}
 	}
 
-	return cptui_admin_notices( 'update', $data['cpt_custom_tax']['name'], true );
+	return 'update_success';
 }
 
 /**
