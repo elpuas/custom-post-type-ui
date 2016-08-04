@@ -130,9 +130,14 @@ function cptui_manage_taxonomies() {
 	 */
 	do_action( 'cptui_inside_taxonomy_wrap' );
 
-	if ( isset( $notice ) ) {
-		echo $notice;
-	}
+	/**
+	 * Filters whether or not a taxonomy was deleted.
+	 *
+	 * @since 1.4.0
+	 *
+	 * @param bool $value Whether or not taxonomy deleted. Default false.
+	 */
+	$taxonomy_deleted = apply_filters( 'cptui_taxonomy_deleted', false );
 
 	// Create our tabs.
 	cptui_settings_tab_menu( $page = 'taxonomies' );
@@ -1329,6 +1334,7 @@ function cptui_process_taxonomy() {
 		} elseif ( isset( $_POST['cpt_delete'] ) ) {
 			check_admin_referer( 'cptui_addedit_taxonomy_nonce_action', 'cptui_addedit_taxonomy_nonce_field' );
 			$result = cptui_delete_taxonomy( $_POST );
+			add_filter( 'cptui_taxonomy_deleted', '__return_true' );
 		}
 		add_action( 'admin_notices', "cptui_{$result}_admin_notice" );
 	}
