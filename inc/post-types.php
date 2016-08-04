@@ -1595,12 +1595,12 @@ function cptui_process_post_type() {
 	if ( ! empty( $_POST ) ) {
 		if ( isset( $_POST['cpt_submit'] ) ) {
 			check_admin_referer( 'cptui_addedit_post_type_nonce_action', 'cptui_addedit_post_type_nonce_field' );
-			$notice = cptui_update_post_type( $_POST );
+			$result = cptui_update_post_type( $_POST );
 		} elseif ( isset( $_POST['cpt_delete'] ) ) {
 			check_admin_referer( 'cptui_addedit_post_type_nonce_action', 'cptui_addedit_post_type_nonce_field' );
-			$notice            = cptui_delete_post_type( $_POST );
-			$post_type_deleted = true;
+			$result = cptui_delete_post_type( $_POST );
 		}
+		add_action( 'admin_notices', "cptui_{$result}_admin_notice" );
 	}
 }
 add_action( 'init', 'cptui_process_post_type', 8 );
