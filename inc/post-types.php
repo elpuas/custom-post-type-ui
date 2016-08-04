@@ -1601,6 +1601,7 @@ function cptui_process_post_type() {
 	}
 
 	if ( ! empty( $_POST ) ) {
+		$result = '';
 		if ( isset( $_POST['cpt_submit'] ) ) {
 			check_admin_referer( 'cptui_addedit_post_type_nonce_action', 'cptui_addedit_post_type_nonce_field' );
 			$result = cptui_update_post_type( $_POST );
@@ -1609,7 +1610,10 @@ function cptui_process_post_type() {
 			$result = cptui_delete_post_type( $_POST );
 			add_filter( 'cptui_post_type_deleted', '__return_true' );
 		}
-		add_action( 'admin_notices', "cptui_{$result}_admin_notice" );
+
+		if ( $result ) {
+			add_action( 'admin_notices', "cptui_{$result}_admin_notice" );
+		}
 	}
 }
 add_action( 'init', 'cptui_process_post_type', 8 );
