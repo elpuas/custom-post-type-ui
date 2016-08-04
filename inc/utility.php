@@ -194,7 +194,7 @@ function cptui_get_taxonomy_slugs() {
  *
  * @since 1.3.0
  *
- * @param $path
+ * @param string $path URL path.
  * @return string|void
  */
 function cptui_admin_url( $path ) {
