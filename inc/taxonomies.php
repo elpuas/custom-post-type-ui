@@ -1325,12 +1325,12 @@ function cptui_process_taxonomy() {
 	if ( ! empty( $_POST ) ) {
 		if ( isset( $_POST['cpt_submit'] ) ) {
 			check_admin_referer( 'cptui_addedit_taxonomy_nonce_action', 'cptui_addedit_taxonomy_nonce_field' );
-			$notice = cptui_update_taxonomy( $_POST );
+			$result = cptui_update_taxonomy( $_POST );
 		} elseif ( isset( $_POST['cpt_delete'] ) ) {
 			check_admin_referer( 'cptui_addedit_taxonomy_nonce_action', 'cptui_addedit_taxonomy_nonce_field' );
-			$notice           = cptui_delete_taxonomy( $_POST );
-			$taxonomy_deleted = true;
+			$result = cptui_delete_taxonomy( $_POST );
 		}
+		add_action( 'admin_notices', "cptui_{$result}_admin_notice" );
 	}
 }
 add_action( 'init', 'cptui_process_taxonomy', 8 );
