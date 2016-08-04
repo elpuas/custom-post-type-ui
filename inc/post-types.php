@@ -1308,7 +1308,8 @@ function cptui_update_post_type( $data = array() ) {
 		 false !== strpos( $data['cpt_custom_post_type']['rewrite_slug'], '\'' ) ||
 		 false !== strpos( $data['cpt_custom_post_type']['rewrite_slug'], '\"' ) ) {
 
-		return cptui_admin_notices( 'error', '', false, __( 'Please do not use quotes in post type names or rewrite slugs', 'custom-post-type-ui' ) );
+		add_filter( 'cptui_custom_error_message', 'cptui_slug_has_quotes' );
+		return 'error';
 	}
 
 	$post_types = cptui_get_post_type_data();
@@ -1326,10 +1327,12 @@ function cptui_update_post_type( $data = array() ) {
 	$slug_as_page = cptui_check_page_slugs( $data['cpt_custom_post_type']['name'] );
 	if ( 'new' == $data['cpt_type_status'] ) {
 		if ( true === $slug_exists ) {
-			return cptui_admin_notices( 'error', '', false, sprintf( __( 'Please choose a different post type name. %s is already registered.', 'custom-post-type-ui' ), $data['cpt_custom_post_type']['name'] ) );
+			add_filter( 'cptui_custom_error_message', 'cptui_slug_matches_post_type' );
+			return 'error';
 		}
 		if ( true === $slug_as_page ) {
-			return cptui_admin_notices( 'error', '', false, sprintf( __( 'Please choose a different post type name. %s matches an existing page slug, which can cause conflicts.', 'custom-post-type-ui' ), $data['cpt_custom_post_type']['name'] ) );
+			add_filter( 'cptui_custom_error_message', 'cptui_slug_matches_page' );
+			return 'error';
 		}
 	}
 
