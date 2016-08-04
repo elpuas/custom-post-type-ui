@@ -129,9 +129,14 @@ function cptui_manage_post_types() {
 	 */
 	do_action( 'cptui_inside_post_type_wrap' );
 
-	if ( isset( $notice ) ) {
-		echo $notice;
-	}
+	/**
+	 * Filters whether or not a post type was deleted.
+	 *
+	 * @since 1.4.0
+	 *
+	 * @param bool $value Whether or not post type deleted. Default false.
+	 */
+	$post_type_deleted = apply_filters( 'cptui_post_type_deleted', false );
 
 	cptui_settings_tab_menu();
 
@@ -1599,6 +1604,7 @@ function cptui_process_post_type() {
 		} elseif ( isset( $_POST['cpt_delete'] ) ) {
 			check_admin_referer( 'cptui_addedit_post_type_nonce_action', 'cptui_addedit_post_type_nonce_field' );
 			$result = cptui_delete_post_type( $_POST );
+			add_filter( 'cptui_post_type_deleted', '__return_true' );
 		}
 		add_action( 'admin_notices', "cptui_{$result}_admin_notice" );
 	}
