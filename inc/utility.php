@@ -569,6 +569,62 @@ function cptui_delete_fail_admin_notice() {
 }
 
 /**
+ * Returns error message for if trying to register existing post type.
+ *
+ * @since 1.4.0
+ *
+ * @return string
+ */
+function cptui_slug_matches_post_type() {
+	return sprintf(
+		esc_html__( 'Please choose a different post type name. %s is already registered.', 'custom-post-type-ui' ),
+		cptui_get_object_from_post_global()
+	);
+}
+
+/**
+ * Returns error message for if trying to register existing taxonomy.
+ *
+ * @since 1.4.0
+ *
+ * @return string
+ */
+function cptui_slug_matches_taxonomy() {
+	return sprintf(
+		esc_html__( 'Please choose a different taxonomy name. %s is already registered.', 'custom-post-type-ui' ),
+		cptui_get_object_from_post_global()
+	);
+}
+
+/**
+ * Returns error message for if trying to register post type with matching page slug.
+ *
+ * @since 1.4.0
+ *
+ * @return string
+ */
+function cptui_slug_matches_page() {
+	return sprintf(
+		esc_html__( 'Please choose a different post type name. %s matches an existing page slug, which can cause conflicts.', 'custom-post-type-ui' ),
+		cptui_get_object_from_post_global()
+	);
+}
+
+/**
+ * Returns error message for if trying to use quotes in slugs or rewrite slugs.
+ *
+ * @since 1.4.0
+ *
+ * @return string
+ */
+function cptui_slug_has_quotes() {
+	return sprintf(
+		esc_html__( 'Please do not use quotes in post type/taxonomy names or rewrite slugs', 'custom-post-type-ui' ),
+		cptui_get_object_from_post_global()
+	);
+}
+
+/**
  * Error admin notice.
  *
  * @since 1.4.0
