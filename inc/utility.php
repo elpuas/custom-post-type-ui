@@ -630,5 +630,8 @@ function cptui_slug_has_quotes() {
  * @since 1.4.0
  */
 function cptui_error_admin_notice() {
-	//return;
+	echo cptui_admin_notices_helper(
+		apply_filters( 'cptui_custom_error_message', '' ),
+		false
+	);
 }
