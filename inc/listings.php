@@ -421,3 +421,21 @@ function cptui_no_taxonomies_to_list() {
 	) . '</p>';
 }
 add_action( 'cptui_no_taxonomies_listing', 'cptui_no_taxonomies_to_list' );
+
+/**
+ * @since 1.5.0
+ * @param string $type
+ * @param array  $settings
+ */
+function cptui_list_single_post_type( $type = '', $settings = array() ) {
+
+}
+
+/**
+ * @since 1.5.0
+ * @param string $tax
+ * @param array  $settings
+ */
+function cptui_list_single_taxonomy( $tax = '', $settings = array() ) {
+
+}
