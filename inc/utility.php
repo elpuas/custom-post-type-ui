@@ -635,3 +635,27 @@ function cptui_error_admin_notice() {
 		false
 	);
 }
+
+/**
+ * Mark site as not a new CPTUI install upon update to 1.5.0
+ *
+ * @since 1.5.0
+ *
+ * @param object $wp_upgrader WP_Upgrader instance.
+ * @param array  $extras      Extra information about performed upgrade.
+ */
+function cptui_not_new_install( $wp_upgrader, $extras ) {
+	// Was CPTUI updated?
+	if ( ! in_array( 'custom-post-type-ui/custom-post-type-ui.php', $extras['plugins'] ) ) {
+		return;
+	}
+
+	// If we are already known as not new, return.
+	if ( 'false' === get_option( 'cptui_new_install', '' ) ) {
+		return;
+	}
+
+	// We need to mark ourselves as not new.
+	update_option( 'cptui_new_install', 'false' );
+}
+add_action( 'upgrader_process_complete', 'cptui_not_new_install', 10, 2 );
