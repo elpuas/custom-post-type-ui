@@ -91,6 +91,10 @@ function cptui_make_activation_redirect() {
 		}
 	}
 
+	if ( 'false' === $new_install ) {
+		return;
+	}
+
 	// Redirect to CPTUI about page.
 	wp_safe_redirect(
 		add_query_arg(
