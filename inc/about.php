@@ -133,10 +133,14 @@ add_action( 'cptui_main_page_extra_notes', 'cptui_pluginize_content', 9 );
  * @since 1.4.0
  */
 function cptui_about_page_newsletter() {
+	if ( ! empty( $_GET ) && isset( $_GET['is_new'] ) && 'true' == $_GET['is_new'] ) {
+		return '';
+	}
 	?>
 	<h3><?php esc_html_e( 'Stay informed', 'custom-post-type-ui' ); ?></h3>
 	<?php
 	cptui_about_page_newsletter_form();
+	return '';
 }
 add_action( 'cptui_main_page_before_changelog', 'cptui_about_page_newsletter' );
 
