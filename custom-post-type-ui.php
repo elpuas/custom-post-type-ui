@@ -80,7 +80,8 @@ function cptui_make_activation_redirect() {
 
 	$query_args = array( 'page' => 'cptui_main_menu' );
 
-	if ( '' === get_option( 'cptui_new_install', '' ) ) {
+	$new_install = get_option( 'cptui_new_install', '' );
+	if ( '' === $new_install ) {
 		$query_args['is_new'] = 'true';
 
 		$debug = defined( 'WP_DEBUG' ) && WP_DEBUG ? 'debug' : '';
