@@ -86,7 +86,7 @@ function cptui_make_activation_redirect() {
 		$debug = defined( 'WP_DEBUG' ) && WP_DEBUG ? 'debug' : '';
 		// Lets make ourselves see it for development sake.
 		if ( empty( $debug ) ) {
-			update_option( 'cptui_new_install', 'true' );
+			update_option( 'cptui_new_install', 'false' );
 		}
 	}
 
