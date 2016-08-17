@@ -80,6 +80,16 @@ function cptui_make_activation_redirect() {
 
 	$query_args = array( 'page' => 'cptui_main_menu' );
 
+	if ( '' === get_option( 'cptui_new_install', '' ) ) {
+		$query_args['is_new'] = 'true';
+
+		$debug = defined( 'WP_DEBUG' ) && WP_DEBUG ? 'debug' : '';
+		// Lets make ourselves see it for development sake.
+		if ( empty( $debug ) ) {
+			update_option( 'cptui_new_install', 'true' );
+		}
+	}
+
 	// Redirect to CPTUI about page.
 	wp_safe_redirect(
 		add_query_arg(
