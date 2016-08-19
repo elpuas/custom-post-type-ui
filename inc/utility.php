@@ -669,3 +669,27 @@ function cptui_get_cptui_taxonomy_object( $taxonomy = '' ) {
 	}
 	return '';
 }
+
+/**
+ * Checks if a requested post type has a custom CPTUI feature supported.
+ *
+ * @since 1.5.0
+ *
+ * @param string $post_type Post type slug.
+ * @param string $feature   Feature to check for.
+ * @return bool
+ */
+function cptui_post_type_supports( $post_type, $feature ) {
+
+	$object = cptui_get_cptui_post_type_object( $post_type );
+
+	if ( ! empty( $object ) ) {
+		if ( array_key_exists( $feature, $object ) && ! empty( $object[ $feature ] ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	return false;
+}
