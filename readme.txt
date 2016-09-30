@@ -30,6 +30,9 @@ All official development on this plugin is on GitHub. New releases are still pub
 
 == Changelog ==
 
+= 1.4.2 - TBD =
+* Fixed: Responsiveness of sections and "ad" space when creating post types or taxonomies on smaller screens. Props @thecxguy
+
 = 1.4.1 - 2016-8-25 =
 * Fixed: issue with default values for new parameters regarding menu/nav menu display for taxonomies.
 * Fixed: typo in support area.
@@ -144,6 +147,9 @@ All official development on this plugin is on GitHub. New releases are still pub
 * Fixed: Prevent potential issues with AJAX requests and our scripts/styles
 
 == Upgrade Notice ==
+
+= 1.4.2 - TBD =
+* Fixed: Responsiveness of sections and "ad" space when creating post types or taxonomies on smaller screens. Props @thecxguy
 
 = 1.4.1 - 2016-8-25 =
 * Fixed: issue with default values for new parameters regarding menu/nav menu display for taxonomies.
