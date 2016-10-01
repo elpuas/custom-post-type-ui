@@ -23,30 +23,31 @@ if ( ! defined( 'ABSPATH' ) ) {
 function cptui_settings() {
 	?>
 	<div class="wrap about-wrap">
-		<?php
+		<div class="hero-wrap">
+			<?php
 
-		/**
-		 * Fires inside and at the top of the wrapper for the main plugin landing page.
-		 *
-		 * @since 1.0.0
-		 */
-		do_action( 'cptui_main_page_start' ); ?>
-		<h1><?php esc_html_e( 'Custom Post Type UI', 'custom-post-type-ui' ); ?> <?php echo CPTUI_VERSION; ?></h1>
+			/**
+			 * Fires inside and at the top of the wrapper for the main plugin landing page.
+			 *
+			 * @since 1.0.0
+			 */
+			do_action( 'cptui_main_page_start' ); ?>
+			<h1><?php esc_html_e( 'Custom Post Type UI', 'custom-post-type-ui' ); ?> <?php echo CPTUI_VERSION; ?></h1>
 
-		<?php
+			<?php
 
-		/**
-		 * Fires after the main page `<h1>` heading tag.
-		 *
-		 * @since 1.3.0
-		 */
-		do_action( 'cptui_main_page_after_header' );
-		?>
+			/**
+			 * Fires after the main page `<h1>` heading tag.
+			 *
+			 * @since 1.3.0
+			 */
+			do_action( 'cptui_main_page_after_header' );
+			?>
 
-		<div class="about-text cptui-about-text">
-			<?php esc_html_e( 'Thank you for choosing Custom Post Type UI! We hope that your experience with our plugin makes creating post types and taxonomies and organizing your content quick and easy.', 'custom-post-type-ui' ); ?>
+			<div class="about-text cptui-about-text">
+				<?php esc_html_e( 'Thank you for choosing Custom Post Type UI! We hope that your experience with our plugin makes creating post types and taxonomies and organizing your content quick and easy.', 'custom-post-type-ui' ); ?>
+			</div>
 		</div>
-		<div class="cptui-badge"></div>
 
 		<?php
 		/**

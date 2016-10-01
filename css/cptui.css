@@ -205,10 +205,34 @@
   margin-bottom: 1em !important;
 }
 
-.about-wrap .cptui-badge {
-  position: absolute;
-  top: 0;
-  right: 0;
+.about-wrap .hero-wrap {
+  padding: 10px 3% 10px 3%;
+  color: #ffffff;
+  background-color: #fdac5f;
+}
+
+.about-wrap .hero-wrap h1 {
+  color: #ffffff;
+  margin: 0;
+}
+
+.about-wrap .hero-wrap .about-text {
+  color: #ffffff;
+  margin: 10px 0;
+}
+
+@media screen and (min-width: 768px) {
+  .about-wrap .hero-wrap {
+    background: url(../images/cptui-icon-256x256.png) no-repeat;
+    background-position: right;
+    background-size: contain;
+    background-color: #fdac5f;
+    padding-right: 200px;
+  }
+}
+
+.about-wrap h3 {
+  margin-left: 3%;
 }
 
 .js #cptui_select_post_type input[type='submit'],
@@ -364,18 +388,4 @@ fieldset .cptui-help {
 
 #poststuff {
   min-width: 463px;
-}
-
-@media screen and (min-width: 768px) {
-  .cptui-badge {
-    padding-top: 142px;
-    height: 50px;
-    width: 173px;
-    color: #fafafa;
-    font-weight: bold;
-    font-size: 14px;
-    text-align: center;
-    margin: 0 -5px;
-    background: url(../images/cptui-icon-256x256.png) no-repeat;
-  }
 }
