@@ -30,7 +30,7 @@ All official development on this plugin is on GitHub. New releases are still pub
 
 == Changelog ==
 
-= 1.4.2 - TBD =
+= 1.4.2 - 2016-10-03 =
 * Fixed: Responsiveness of sections and "ad" space when creating post types or taxonomies on smaller screens. Props @thecxguy
 
 = 1.4.1 - 2016-8-25 =
@@ -148,7 +148,7 @@ All official development on this plugin is on GitHub. New releases are still pub
 
 == Upgrade Notice ==
 
-= 1.4.2 - TBD =
+= 1.4.2 - 2016-10-03 =
 * Fixed: Responsiveness of sections and "ad" space when creating post types or taxonomies on smaller screens. Props @thecxguy
 
 = 1.4.1 - 2016-8-25 =
