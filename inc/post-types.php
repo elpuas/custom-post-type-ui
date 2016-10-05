@@ -1628,7 +1628,22 @@ function cptui_process_post_type() {
 }
 add_action( 'init', 'cptui_process_post_type', 8 );
 
+/**
+ * Handle the conversion of post type posts.
+ *
+ * This function came to be because we needed to convert AFTER registration.
+ *
+ * @since 1.4.3
+ */
 function cptui_do_convert_post_type_posts() {
+
+	/**
+	 * Whether or not to convert post type posts.
+	 *
+	 * @since 1.4.3
+	 *
+	 * @param bool $value Whether or not to convert.
+	 */
 	if ( apply_filters( 'cptui_convert_post_type_posts', false ) ) {
 		cptui_convert_post_type_posts( sanitize_text_field( $_POST['cpt_original'] ), sanitize_text_field( $_POST['cpt_custom_post_type']['name'] ) );
 	}
