@@ -1299,7 +1299,7 @@ function cptui_update_post_type( $data = array() ) {
 
 	if ( ! empty( $data['cpt_original'] ) && $data['cpt_original'] != $data['cpt_custom_post_type']['name'] ) {
 		if ( ! empty( $data['update_post_types'] ) ) {
-			cptui_convert_post_type_posts( $data['cpt_original'], $data['cpt_custom_post_type']['name'] );
+			add_filter( 'cptui_convert_post_type_posts', '__return_true' );
 		}
 	}
 
@@ -1627,3 +1627,10 @@ function cptui_process_post_type() {
 	}
 }
 add_action( 'init', 'cptui_process_post_type', 8 );
+
+function cptui_do_convert_post_type_posts() {
+	if ( apply_filters( 'cptui_convert_post_type_posts', false ) ) {
+		cptui_convert_post_type_posts( sanitize_text_field( $_POST['cpt_original'] ), sanitize_text_field( $_POST['cpt_custom_post_type']['name'] ) );
+	}
+}
+add_action( 'init', 'cptui_do_convert_post_type_posts' );
