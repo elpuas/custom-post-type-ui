@@ -1436,7 +1436,7 @@ add_action( 'init', 'cptui_process_taxonomy', 8 );
 
 function cptui_do_convert_taxonomy_terms() {
 	if ( apply_filters( 'cptui_convert_taxonomy_terms', false ) ) {
-		cptui_convert_taxonomy_terms( $_POST['tax_original'], $_POST['cpt_custom_tax']['name'] );
+		cptui_convert_taxonomy_terms( sanitize_text_field( $_POST['tax_original'] ), sanitize_text_field( $_POST['cpt_custom_tax']['name'] ) );
 	}
 }
 add_action( 'init', 'cptui_do_convert_taxonomy_terms' );
