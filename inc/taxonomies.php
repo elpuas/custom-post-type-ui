@@ -1089,7 +1089,7 @@ function cptui_update_taxonomy( $data = array() ) {
 
 	if ( ! empty( $data['tax_original'] ) && $data['tax_original'] != $data['cpt_custom_tax']['name'] ) {
 		if ( ! empty( $data['update_taxonomy'] ) ) {
-			cptui_convert_taxonomy_terms( $data['tax_original'], $data['cpt_custom_tax']['name'] );
+			add_filter( 'cptui_convert_taxonomy_terms', '__return_true' );
 		}
 	}
 
@@ -1439,3 +1439,25 @@ function cptui_process_taxonomy() {
 	}
 }
 add_action( 'init', 'cptui_process_taxonomy', 8 );
+
+/**
+ * Handle the conversion of taxonomy terms.
+ *
+ * This function came to be because we needed to convert AFTER registration.
+ *
+ * @since 1.4.3
+ */
+function cptui_do_convert_taxonomy_terms() {
+
+	/**
+	 * Whether or not to convert taxonomy terms.
+	 *
+	 * @since 1.4.3
+	 *
+	 * @param bool $value Whether or not to convert.
+	 */
+	if ( apply_filters( 'cptui_convert_taxonomy_terms', false ) ) {
+		cptui_convert_taxonomy_terms( sanitize_text_field( $_POST['tax_original'] ), sanitize_text_field( $_POST['cpt_custom_tax']['name'] ) );
+	}
+}
+add_action( 'init', 'cptui_do_convert_taxonomy_terms' );
