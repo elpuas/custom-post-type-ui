@@ -1349,13 +1349,19 @@ function cptui_convert_taxonomy_terms( $original_slug = '', $new_slug = '' ) {
 
 	$term_ids = get_terms( $original_slug, $args );
 
-	$term_ids = implode( ',', $term_ids );
+	if ( is_int( $term_ids ) ) {
+		$term_ids = (array) $term_ids;
+	}
 
-	$query = "UPDATE `{$wpdb->term_taxonomy}` SET `taxonomy` = %s WHERE `taxonomy` = %s AND `term_id` IN ( {$term_ids} )";
+	if ( is_array( $term_ids ) && ! empty( $term_ids ) ) {
+		$term_ids = implode( ',', $term_ids );
 
-	$wpdb->query(
-		$wpdb->prepare( $query, $new_slug, $original_slug )
-	);
+		$query = "UPDATE `{$wpdb->term_taxonomy}` SET `taxonomy` = %s WHERE `taxonomy` = %s AND `term_id` IN ( {$term_ids} )";
+
+		$wpdb->query(
+			$wpdb->prepare( $query, $new_slug, $original_slug )
+		);
+	}
 	cptui_delete_taxonomy( $original_slug );
 }
 
