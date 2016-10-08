@@ -51,7 +51,7 @@ add_action( 'init', 'cptui_load_ui_class' );
  */
 function cptui_activation_redirect() {
 	// Bail if activating from network, or bulk.
-	if ( isset( $_GET['activate-multi'] ) ) {
+	if ( is_network_admin() ) {
 		return;
 	}
 
