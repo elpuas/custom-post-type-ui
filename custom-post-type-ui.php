@@ -74,7 +74,7 @@ function cptui_make_activation_redirect() {
 	delete_transient( 'cptui_activation_redirect' );
 
 	// Bail if activating from network, or bulk.
-	if ( isset( $_GET['activate-multi'] ) ) {
+	if ( is_network_admin() ) {
 		return;
 	}
 
